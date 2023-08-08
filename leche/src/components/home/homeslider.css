@@ -1,0 +1,56 @@
+/* @media (min-width: 768px) {
+    .rightside {
+      width: calc(50% - 30px);
+      margin-left: 2%;
+    }
+    .rightsubside {
+        width: calc(50% - 15px);
+    }
+    .leftsubside {
+        width: calc(50% - 15px) ;
+        margin-right:4%;
+    }
+  }
+  @media (max-width: 767px) { 
+    .rightside{
+        margin-top:3% ;
+    }
+    .rightsubside{
+        margin-top:3% ;
+    }}
+   
+    
+   
+    
+        */
+
+
+        /* homeslider.css */
+
+@media (min-width: 768px) {
+    .rightside {
+      width: calc(50% - 30px);
+      /* margin-left: 2%; */
+      
+    }
+    .rightsubside {
+      width: calc(50% - 15px);
+    }
+    .leftsubside {
+      width: calc(50% - 15px);
+      margin-right: 4%;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .rightside {
+      margin-top: 3%;
+      width:100%;
+     
+    }
+    .rightsubside {
+     
+      width: 100%;
+
+    }
+  }
