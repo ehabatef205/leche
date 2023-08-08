@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile
     container_name: React_leche_container
     volumes:
-      - ./namshy_frontend/src:/React_leche/src:ro
+      - ./leche/src:/React_leche/src:ro
     ports:
       - "3060:3060"
     environment:
