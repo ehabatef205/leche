@@ -1,13 +1,13 @@
 version: "3.1"
 services:
-  nestjs-app:
+  back_leche-app:
     build:
       context: ./back_leche
       dockerfile: Dockerfile
-    container_name: back_leche_container
+    container_name: back_leche_app_container
     # image: a7medabdo6/care_managment
     volumes:
-      - ./back_brook/src:/back_leche/src:ro
+      - ./back_leche/src:/back_leche_App/src:ro
     ports:
       - "7050:7050"
   react:
@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     container_name: React_leche_container
     volumes:
-      - ./brook/src:/React_leche/src:ro
+      - ./leche/src:/React_leche/src:ro
     ports:
       - "3060:3060"
     environment:
@@ -25,8 +25,8 @@ services:
 
   nginx:
     build:
-      context: ./
-      dockerfile: Dockerfile.nginx
+       context: ./
+       dockerfile: Dockerfile.nginx
     ports:
-      - 82:80
+       - 86:86
     restart: always
