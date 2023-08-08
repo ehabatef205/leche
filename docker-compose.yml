@@ -1,13 +1,12 @@
 version: "3.1"
 services:
-  back_leche-app:
+  leche-app:
     build:
       context: ./back_leche
       dockerfile: Dockerfile
-    container_name: back_leche_app_container
-    # image: a7medabdo6/care_managment
+    container_name: back_leche_container
     volumes:
-      - ./back_leche/src:/back_leche_App/src:ro
+      - ./back_leche/src:/back_leche_app/src:ro
     ports:
       - "7050:7050"
   react:
@@ -16,7 +15,7 @@ services:
       dockerfile: Dockerfile
     container_name: React_leche_container
     volumes:
-      - ./leche/src:/React_leche/src:ro
+      - ./namshy_frontend/src:/React_leche/src:ro
     ports:
       - "3060:3060"
     environment:
@@ -25,8 +24,8 @@ services:
 
   nginx:
     build:
-       context: ./
-       dockerfile: Dockerfile.nginx
+      context: ./
+      dockerfile: Dockerfile.nginx
     ports:
-       - 86:86
+      - 86:80
     restart: always

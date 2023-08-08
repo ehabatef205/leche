@@ -1,6 +1,6 @@
 FROM node:14.19.3
 
-WORKDIR /back_leche_App
+WORKDIR /back_leche_app
 
 COPY package.json .
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 7050
 
-CMD ["npm","run","start"]
+CMD ["npm","run","production"]
