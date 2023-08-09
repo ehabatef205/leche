@@ -1,0 +1,12 @@
+version: "3.1"
+services:
+  pay_leche_app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: pay_leche_app_container
+    # image: a7medabdo6/care_managment
+    volumes:
+      - ./src:/pay_leche_app/src:ro
+    ports:
+      - "7051:7051"
