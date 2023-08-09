@@ -20,7 +20,7 @@ services:
       - ./pay/src:/pay_leche_app/src:ro
     ports:
       - "7051:7051"
-  react:
+  react_leche:
     build:
       context: ./leche
       dockerfile: Dockerfile
