@@ -1,6 +1,6 @@
 FROM node:14.19.3
 
-WORKDIR /pay_leche_App
+WORKDIR /pay_leche_app
 
 COPY package.json .
 

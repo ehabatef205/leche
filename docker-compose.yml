@@ -10,14 +10,14 @@ services:
       - ./back_leche/src:/back_leche_App/src:ro
     ports:
       - "7050:7050"
-  pay_leche_App:
+  pay_leche_app:
     build:
       context: ./pay
       dockerfile: Dockerfile
-    container_name: pay_leche_App_container
+    container_name: pay_leche_app_container
     # image: a7medabdo6/care_managment
     volumes:
-      - ./pay/src:/pay_leche_App/src:ro
+      - ./pay/src:/pay_leche_app/src:ro
     ports:
       - "7051:7051"
   react:
