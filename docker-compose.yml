@@ -28,7 +28,17 @@ services:
     volumes:
       - ./leche/src:/React_front_leche/src:ro
     ports:
-      - "3030:3030"
+      - "3060:3060"
     environment:
       - NODE_ENV=production
+    restart: always
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: Dockerfile.nginx
+    # volumes:
+    #     - ./Care_Frontend/build:/usr/share/nginx/html:ro
+    ports:
+      - 89:80
     restart: always
