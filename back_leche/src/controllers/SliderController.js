@@ -1,10 +1,10 @@
-const Images = require('../models/images')
+const Slider = require('../models/slider')
 const mongoose = require('mongoose')
 
-module.exports.ImageById = async (req, res) => {
+module.exports.SliderImageById = async (req, res) => {
     let _id = new mongoose.Types.ObjectId(req.params.id)
 
-    await Images.findOne({ _id: _id }).then(e => {
+    await Slider.findOne({ _id: _id }).then(e => {
         res.header('Access-Control-Allow-Origin', '*');
         return res.json(e)
     }).catch(err => {
@@ -12,8 +12,8 @@ module.exports.ImageById = async (req, res) => {
     })
 }
 
-module.exports.AllImages = (req, res) => {
-    Images.find()
+module.exports.AllSliderImages = (req, res) => {
+    Slider.find()
         .then(response => {
             res.json({
                 response
@@ -26,13 +26,14 @@ module.exports.AllImages = (req, res) => {
         })
 }
 
-module.exports.createImage = async (req, res, next) => {
+module.exports.createSliderImage = async (req, res, next) => {
     let body = req.body
 
-    let images = new Images({
+    let slider = new Slider({
         image: body.image,
+        category_id: body.category_id,
     })
-    images.save()
+    slider.save()
         .then(response => {
             res.json({
                 response
@@ -46,20 +47,20 @@ module.exports.createImage = async (req, res, next) => {
         })
 }
 
-module.exports.UpdateImage = async (req, res) => {
+module.exports.UpdateSliderImage = async (req, res) => {
     const body = req.body
     let _id = new mongoose.Types.ObjectId(req.params.id)
-    await Images.findOneAndUpdate({ _id: _id }, body, { new: true }).then(e => {
+    await Slider.findOneAndUpdate({ _id: _id }, body, { new: true }).then(e => {
         return res.status(200).json(e)
     }).catch(err => {
         return res.json({ message: "Error" })
     })
 }
 
-module.exports.DeleteImage = async (req, res) => {
+module.exports.DeleteSliderImage = async (req, res) => {
     let _id = new mongoose.Types.ObjectId(req.params.id)
 
-    await Images.deleteOne({ _id: _id }).then(e => {
+    await Slider.deleteOne({ _id: _id }).then(e => {
         return res.status(200).json(e)
     }).catch(err => {
         return res.json({ message: "Error" })

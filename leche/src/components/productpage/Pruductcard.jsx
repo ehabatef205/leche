@@ -1,6 +1,6 @@
 import { products } from "../data";
 import React, { useState, useEffect, useContext } from "react";
-import getFaction from "../../api/basis/productsbycategory";
+import * as Products from "../../api/basis/product";
 import "./slider.css";
 import Carousel from "react-bootstrap/Carousel";
 import { Card } from "react-bootstrap";
@@ -25,7 +25,7 @@ export function CardsSlider() {
   useEffect(() => {
     if (id) {
       setLoading(true)
-      getFaction(id).then(res => {
+      Products.getProductOfCateegory(id).then(res => {
         setLoading(false)
         setProdByCat(res.data)
       }).catch((error) => {
@@ -36,6 +36,28 @@ export function CardsSlider() {
     , [id])
 
   const addC = (product_id) => {
+    /*
+    if (localStorage.getItem("AuthBrook") === null) {
+      var storage = JSON.parse(localStorage.getItem('Detail'))
+      if (!storage) {
+        storage = [];
+      }
+      var detail = { product_id: product_id, quantity: 1 };
+      storage.push(detail)
+      console.log(storage)
+      localStorage.setItem('Detail', JSON.stringify(storage));
+    } else {
+      Cart.addCart(product_id).then(res => {
+        if (res.data.message === "This product is already in cart") {
+          toast.error(res.data.message, {
+            position: toast.POSITION.TOP_RIGHT
+          })
+        } else {
+          console.log(res)
+        }
+      })
+    }
+    */
     if (localStorage.getItem("AuthBrook") === null) {
       toast.warn("Please login first", {
         position: toast.POSITION.TOP_RIGHT

@@ -23,6 +23,7 @@ module.exports.Create_order_item = async (req, res) => {
             body.products[i].image = product.images[0]
             body.products[i].SKU = product.SKU
             body.products[i].name = product.name
+            body.products[i].price = product.price_after
 
             await Product.findByIdAndUpdate(body.products[i].product_id, { $set: { quantity: product.quantity - body.products[i].quantity } }).then(async (product1) => {
                 await Cart_items.findOneAndDelete({ product_id: body.products[i].product_id, user_id: id }).then(e => {

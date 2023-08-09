@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const imageschema = new Schema({
+const sliderSchema = new Schema({
     image: {
         type: String
     },
@@ -10,5 +10,5 @@ const imageschema = new Schema({
     }
 }, { timeseries: true })
 
-const Image = mongoose.model('image', imageschema)
-module.exports = Image
+const Slider = mongoose.model('slider', sliderSchema)
+module.exports = Slider

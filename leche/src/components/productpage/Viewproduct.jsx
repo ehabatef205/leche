@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import getProduct from '../../api/basis/product'
+import * as Products from '../../api/basis/product'
 import "./slider.css";
 import { FaSpinner } from 'react-icons/fa';
 import "../../loading.css"
@@ -9,6 +9,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as Cart from "../../api/basis/cart"
+import * as Wish from "../../api/basis/wish"
 
 function Viewproduct({ products, handleClick }) {
   const { id } = useParams();
@@ -18,7 +19,7 @@ function Viewproduct({ products, handleClick }) {
   useEffect(() => {
     if (id) {
       setLoading(true)
-      getProduct(id).then(res => {
+      Products.getProduct(id).then(res => {
         setLoading(false)
         console.log(res.data)
         setProduct(res.data)
@@ -29,7 +30,7 @@ function Viewproduct({ products, handleClick }) {
   }
     , [id])
 
-  const add = (product_id) => {
+  const addC = (product_id) => {
     if (localStorage.getItem("AuthBrook") === null) {
       toast.warn("Please login first", {
         position: toast.POSITION.TOP_RIGHT
@@ -37,6 +38,24 @@ function Viewproduct({ products, handleClick }) {
     } else {
       Cart.addCart(product_id).then(res => {
         if (res.data.message === "This product is already in cart") {
+          toast.error(res.data.message, {
+            position: toast.POSITION.TOP_RIGHT
+          })
+        } else {
+          console.log(res.data)
+        }
+      })
+    }
+  }
+
+  const addW = (product_id) => {
+    if (localStorage.getItem("AuthBrook") === null) {
+      toast.warn("Please login first", {
+        position: toast.POSITION.TOP_RIGHT
+      })
+    } else {
+      Wish.addWish(product_id).then(res => {
+        if (res.data.message === "This product is already in wish") {
           toast.error(res.data.message, {
             position: toast.POSITION.TOP_RIGHT
           })
@@ -93,7 +112,8 @@ function Viewproduct({ products, handleClick }) {
               </div>
 
               <div>
-                <p> ${product.price}</p>
+                <p> ${product.price_after}</p>
+                <p style={{ color: "red" }}> ${product.price_before}</p>
               </div>
 
               <div>
@@ -113,7 +133,8 @@ function Viewproduct({ products, handleClick }) {
               </div>
               <hr></hr>
               <div className=" w-100">
-                <button className="btn w-50" style={{ backgroundColor: "#72be93", color: "#fff" }} onClick={() => { add(product._id) }}>add to cart</button>
+                <button className="btn" style={{ backgroundColor: "#72be93", color: "#fff", marginRight: "5px" }} onClick={() => { addC(product._id) }}>add to cart</button>
+                <button className="btn" style={{ backgroundColor: "#fff", marginLeft: "5px", border: "1px solid #72be93", color: "#72be93" }} onClick={() => { addW(product._id) }}>add to wish</button>
               </div>
 
             </div>

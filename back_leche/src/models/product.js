@@ -4,31 +4,31 @@ const Schema = mongoose.Schema
 const Productschema = new Schema({
     name: {
         type: String,
-        required:true
+        required: true
     },
     desc: {
         type: String,
-        required:true
-    },
-    image: {
-        type: String,
-        required:true
+        required: true
     },
     images: [{
         type: String,
-        required:true
+        required: true
     }],
     SKU: {
         type: String,
-        required:true,
-        unique:true
+        required: true,
+        unique: true
     },
     category_id: {
         type: String,
     },
-    price: {
-        type:Number,
-        default:0
+    price_before: {
+        type: Number,
+        default: 0
+    },
+    price_after: {
+        type: Number,
+        default: 0
     },
     quantity: {
         type: Number

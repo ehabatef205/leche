@@ -10,7 +10,7 @@ const addOrder = async (products, phone, country, firstName, lastName, address, 
         address: address,
         city: city,
         zipCode: zipCode,
-        payment: "cash",
+        payment: "online",
         totalPrice: totalPrice
     }
         , { headers: { authorization: localStorage.getItem("AuthBrook") } }

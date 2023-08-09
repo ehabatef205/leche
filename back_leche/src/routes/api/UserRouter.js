@@ -6,10 +6,12 @@ const {
   updateProfile,
   deleteProfile,
   login,
-  viewUser
+  viewUser,
+  AllUsers
 } = require("../../controllers/UserController");
 
 router.get("/view_profile", checkToken, viewProfile);
+router.get("/all", AllUsers);
 router.post("/view_user", viewUser);
 router.post("/sign_up", signUp);
 router.post("/login", login);

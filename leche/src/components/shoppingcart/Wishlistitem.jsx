@@ -4,7 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { Card } from "react-bootstrap";
 import { FaSpinner } from 'react-icons/fa';
 import "../../loading.css"
-import getProduct from '../../api/basis/product'
+import * as Products from '../../api/basis/product'
 import * as Cart from "../../api/basis/cart"
 import * as Wish from "../../api/basis/wish"
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,7 +18,7 @@ export const Wishlistitem = (props) => {
   useEffect(() => {
     if (props.product_id) {
       setLoading(true)
-      getProduct(props.product_id).then(res => {
+      Products.getProduct(props.product_id).then(res => {
         setLoading(false)
         console.log(res.data)
         setProduct(res.data)

@@ -4,18 +4,11 @@ const { hashSync, genSaltSync } = require("bcrypt");
 const jwt = require('jsonwebtoken')
 require("dotenv").config();
 
-const viewProfile = (req, res, next) => {
-    try{
-        const usertoken = req.headers.authorization;
-        const token = usertoken.split(' ');
-        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
-        const id = decoded.id;
-
-        User.findById(id)
-        .then(respone => {
-            res.header('Access-Control-Allow-Origin', '*');
+const AllUsers = async (req, res, next) => {
+    User.find()
+        .then(response => {
             res.json({
-                respone
+                response
             })
         })
         .catch(error => {
@@ -23,18 +16,39 @@ const viewProfile = (req, res, next) => {
                 message: 'An error Occured!'
             })
         })
-    }catch (error) {
+}
+
+const viewProfile = (req, res, next) => {
+    try {
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
+        const id = decoded.id;
+
+        User.findById(id)
+            .then(respone => {
+                res.header('Access-Control-Allow-Origin', '*');
+                res.json({
+                    respone
+                })
+            })
+            .catch(error => {
+                res.json({
+                    message: 'An error Occured!'
+                })
+            })
+    } catch (error) {
         res.json({
-        message: "Error"
+            message: "Error"
         })
     }
 }
 
 const signUp = async (req, res) => {
-    try{
+    try {
         const body = req.body;
         const isNewUser = await User.isThisEmailUse(body.email)
-        if(!isNewUser){
+        if (!isNewUser) {
             return res.json({
                 message: 'This email is already in use'
             })
@@ -57,12 +71,12 @@ const signUp = async (req, res) => {
             last_name: body.last_name,
         })
         user.save()
-        .then(response => {
-            res.json({
-            message: "Sign up is successfully"
+            .then(response => {
+                res.json({
+                    message: "Sign up is successfully"
+                })
             })
-        })
-    }catch(error){
+    } catch (error) {
         res.json({
             message: "Error"
         })
@@ -70,7 +84,7 @@ const signUp = async (req, res) => {
 }
 
 const updateProfile = async (req, res) => {
-    try{
+    try {
         const usertoken = req.headers.authorization;
         const token = usertoken.split(' ');
         const decoded = jwt.verify(token[1], process.env.JWT_KEY);
@@ -82,19 +96,19 @@ const updateProfile = async (req, res) => {
             last_name: body.last_name,
         }
         User.findByIdAndUpdate(id, { $set: update })
-            .then(()=> {
+            .then(() => {
                 res.json({
-                message: 'User updated successfully'
+                    message: 'User updated successfully'
                 })
             })
             .catch(error => {
                 console.log(error);
                 res.json({
-        
-                message: 'An error Occured!'
+
+                    message: 'An error Occured!'
                 })
             })
-    }catch (error) {
+    } catch (error) {
         res.json({
             message: "Error"
         })
@@ -102,32 +116,32 @@ const updateProfile = async (req, res) => {
 }
 
 const deleteProfile = (req, res, next) => {
-    try{
+    try {
         const usertoken = req.headers.authorization;
         const token = usertoken.split(' ');
         const decoded = jwt.verify(token[1], process.env.JWT_KEY);
         const id = decoded.id;
 
         User.findByIdAndRemove(id)
-        .then(respone => {
-            res.json({
-                message: 'User deleted successfully'
+            .then(respone => {
+                res.json({
+                    message: 'User deleted successfully'
+                })
             })
-        })
-        .catch(error => {
-            res.json({
-                message: 'An error Occured!'
+            .catch(error => {
+                res.json({
+                    message: 'An error Occured!'
+                })
             })
+    } catch (error) {
+        res.json({
+            message: "Error"
         })
-    }catch (error) {
-      res.json({
-        message: "Error"
-      })
     }
 }
 
-const login = async(req, res, next) => {
-    try{
+const login = async (req, res, next) => {
+    try {
         var email = req.body.email
         var password = req.body.password
         const isNewUser = await User.isThisEmailUse(email)
@@ -136,63 +150,63 @@ const login = async(req, res, next) => {
                 message: 'email or password is invalid'
             })
         }
-        User.findOne({$or: [{email: email}, {password: password}]})
+        User.findOne({ $or: [{ email: email }, { password: password }] })
             .then(user => {
-                if(user){
-                    bcrypt.compare(password, user.password, function(err, result){
-                        if(err){
+                if (user) {
+                    bcrypt.compare(password, user.password, function (err, result) {
+                        if (err) {
                             res.json({
                                 error: err
                             })
                         }
 
-                        if(result){
-                            let token = jwt.sign({email:user.email, id: user._id}, process.env.JWT_KEY)
+                        if (result) {
+                            let token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY)
                             res.json({
                                 message: 'Login Successful!',
                                 token: token,
                             })
-                        }else{
+                        } else {
                             res.json({
                                 message: "email or password is invalid"
                             })
                         }
                     })
-                }else{
+                } else {
                     res.json({
                         message: 'No User'
                     })
                 }
             })
-    }catch (error) {
+    } catch (error) {
         res.json({
-          message: "Error"
+            message: "Error"
         })
     }
 }
 const viewUser = (req, res, next) => {
-    try{
-        const id =req.body.id
+    try {
+        const id = req.body.id
         User.findById(id)
-        .then(respone => {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.json({
-                respone
+            .then(respone => {
+                res.header('Access-Control-Allow-Origin', '*');
+                res.json({
+                    respone
+                })
             })
-        })
-        .catch(error => {
-            res.json({
-                message: 'An error Occured!'
+            .catch(error => {
+                res.json({
+                    message: 'An error Occured!'
+                })
             })
-        })
-    }catch (error) {
+    } catch (error) {
         res.json({
-        message: "Error"
+            message: "Error"
         })
     }
 }
 
 
 module.exports = {
-    viewProfile, signUp, updateProfile, deleteProfile, login,viewUser
+    viewProfile, signUp, updateProfile, deleteProfile, login, viewUser, AllUsers
 }

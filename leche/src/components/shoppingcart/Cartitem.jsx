@@ -1,19 +1,20 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaSpinner } from 'react-icons/fa';
 import "../../loading.css"
-import getProduct from '../../api/basis/product'
+import * as Products from '../../api/basis/product'
 import * as Cart from "../../api/basis/cart"
 
 export const CartItem = (props) => {
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [counter, setCounter] = useState(props.quantity);
+  const [storage, setStorage] = useState(JSON.parse(localStorage.getItem('Detail')) === null ? [] : JSON.parse(localStorage.getItem('Detail')))
 
   useEffect(() => {
     if (props.product_id) {
 
       setLoading(true)
-      getProduct(props.product_id).then(res => {
+      Products.getProduct(props.product_id).then(res => {
         setLoading(false)
         console.log(res.data)
         setProduct(res.data)
@@ -25,6 +26,16 @@ export const CartItem = (props) => {
     , [props.product_id])
 
   const remove = () => {
+    /*if (localStorage.getItem("AuthBrook") === null) {
+      const updatedItems = storage.filter((_, index) => index !== props.index);
+      setStorage(updatedItems);
+      localStorage.setItem('Detail', JSON.stringify(storage))
+      props.getCart()
+    } else {
+      Cart.removeCart(props.cart._id).then(res => {
+        props.getCart()
+      })
+    }*/
     Cart.removeCart(props.cart._id).then(res => {
       props.getCart()
     })

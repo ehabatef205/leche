@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './homeslider.css';
 import Carousel from "react-bootstrap/Carousel";
 import { useNavigate } from 'react-router-dom';
-import getImages from '../../api/basis/getImages'
+import * as Slider from '../../api/basis/slider'
+import * as Images from '../../api/basis/image'
 
 function Homeslider() {
   const title = "image";
+  const [slider, setSlider] = useState([])
   const [images, setImages] = useState([])
   const [loading, setLoading] = useState(false)
   const [ind, setInd] = useState(0)
@@ -13,7 +15,12 @@ function Homeslider() {
 
   useEffect(() => {
     setLoading(true)
-    getImages().then(res => {
+    Slider.getSliderImages().then(res => {
+      setLoading(false)
+      setSlider(res.data.response)
+    })
+
+    Images.getImages().then(res => {
       setLoading(false)
       setImages(res.data.response)
     })
@@ -22,7 +29,7 @@ function Homeslider() {
 
   const handleSlideClick = (index) => {
     console.log(`Slide ${index} clicked!`);
-    navigate("/Productpage/" + images[index].category_id)
+    navigate("/Productpage/" + slider[index].category_id)
   };
 
   const handleSelect = (index) => {
@@ -56,7 +63,7 @@ function Homeslider() {
               <Carousel style={{
                 height: '700px', width: "97%"
               }} interval={3000} onSelect={handleSelect}>
-                {images.map((image, index) => (
+                {slider.map((image, index) => (
                   <Carousel.Item key={index}>
                     <img style={{
                       height: '700px',
@@ -85,7 +92,7 @@ function Homeslider() {
           >
             <img
               className='h-100 w-100'
-              src='https://images.pexels.com/photos/17424774/pexels-photo-17424774/free-photo-of-wood-nature-bird-red.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+              src={images[0]?.image}
               alt='Right Top Slide'
               style={{ borderRadius: "10px", }}
             />
@@ -100,7 +107,7 @@ function Homeslider() {
             >
               <img
                 className='h-100 w-100'
-                src='https://images.pexels.com/photos/12480410/pexels-photo-12480410.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                src={images[1]?.image}
                 alt='Right Bottom Left Slide'
                 style={{ borderRadius: "10px", }}
               />
@@ -112,7 +119,7 @@ function Homeslider() {
             >
               <img
                 className='h-100 w-100'
-                src='https://images.pexels.com/photos/12480410/pexels-photo-12480410.jpeg'
+                src={images[2]?.image}
                 alt='Right Bottom Right Slide'
                 style={{ borderRadius: "10px", }}
               />

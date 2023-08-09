@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Cart1 from "../api/basis/cart"
 import { CartItem } from "../components/shoppingcart/Cartitem";
-import { carts } from "../api/basis/productlist";
+import * as ProductList from "../api/basis/product";
 import addOrder from "../api/basis/addOrder"
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const Cart = (props) => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -30,6 +31,59 @@ const Cart = (props) => {
     , [props.data])
 
   const getCart = async () => {
+    /*
+    if (localStorage.getItem("AuthBrook") === null) {
+      var storage = JSON.parse(localStorage.getItem('Detail'))
+      if (!storage) {
+        storage = [];
+      } else {
+        const productArr = []
+        setCarts(storage)
+        setProducts([])
+        for (var i = 0; i < storage.length; i++) {
+          const product = { product_id: storage[i].product_id, quantity: storage[i].quantity }
+          setProducts(products1 => [...products1, product])
+        }
+        for (var i = 0; i < storage.length; i++) {
+          productArr.push(storage[i].product_id)
+        }
+        const products = await Products.getProductList(productArr)
+        setProductItems(products)
+        var total = 0
+        products.forEach((element, index) => {
+          total += element.price_after * storage[index].quantity
+        })
+        setTotalPrice(total)
+        setData(!data)
+      }
+    } else {
+      const productArr = []
+      var cartarr;
+      await Cart1.getCarts(localStorage.getItem("AuthBrook")).then(res => {
+        cartarr = res.data
+        setCarts(res.data)
+        setProducts([])
+        for (var i = 0; i < res.data.length; i++) {
+          const product = { product_id: res.data[i].product_id, quantity: res.data[i].quantity }
+          setProducts(products1 => [...products1, product])
+        }
+        if (res.data.length !== 0) {
+          setIsEmpty(false)
+        }
+      })
+      cartarr.forEach(element => {
+        productArr.push(element.product_id)
+      });
+      const products = await Products.getProductList(productArr)
+      setProductItems(products)
+      var total = 0
+      products.forEach((element, index) => {
+        total += element.price_after * cartarr[index].quantity
+      })
+      setTotalPrice(total)
+      console.log(total)
+    }
+    */
     const productArr = []
     var cartarr;
     await Cart1.getCarts(localStorage.getItem("AuthBrook")).then(res => {
@@ -47,7 +101,7 @@ const Cart = (props) => {
     cartarr.forEach(element => {
       productArr.push(element.product_id)
     });
-    const products = await carts(productArr)
+    const products = await ProductList.getProductList(productArr)
     setProductItems(products)
     var total = 0
     products.forEach((element, index) => {
@@ -66,6 +120,53 @@ const Cart = (props) => {
       })
     }
   }
+
+  const initialOptions = {
+    clientId: "AbHZZAi6Hm95o2PH8A8C0l8bNO9N4kAqrACsL44T2ziyvLe8BFHEpw5Z2Sau0Wbfozu7YzeNFcO10hyc",
+    currency: "USD",
+    intent: "capture",
+  };
+
+  const createOrder = (data) => {
+    // Order is created on the server and the order id is returned
+    return fetch("http://5.183.9.124:7051/my-server/create-paypal-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // use the "body" param to optionally pass additional order information
+      // like product skus and quantities
+      body: JSON.stringify({
+        products: {
+          cost: totalPrice,
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((order) => order.id);
+  };
+
+  const onApprove = (data) => {
+    // Order is captured on the server and the response is returned to the browser
+    return fetch("http://5.183.9.124:7051/my-server/capture-paypal-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        orderID: data.orderID
+      })
+    })
+      .then((response) => response.json()).then(async (order) => {
+        if (order.status === "COMPLETED") {
+          await addOrder(products1, phone.current.value, country.current.value, firstName.current.value, lastName.current.value, address.current.value, city.current.value, zipCode.current.value, totalPrice).then(async res => {
+            console.log(res.data)
+            getCart()
+            setIsOpen(false)
+          })
+        }
+      });;
+  };
 
   return (
     <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -133,17 +234,12 @@ const Cart = (props) => {
                 placeholder="Zip code"
                 type="text"
               />
-              <div className=" my-1 w-100  d-md-grid ">
-                <span className=" my-2 h-100 " style={{ textAlign: "center" }}>
-                  <button
-                    className="btn text-light my-3 h-50 w-100"
-                    onClick={() => { add() }}
-                    style={{ backgroundColor: "#72be93" }}
-                  >
-                    Create order
-                  </button>
-                </span>
-              </div>
+              <PayPalScriptProvider options={initialOptions}>
+                <PayPalButtons
+                  createOrder={(data, actions) => createOrder(data, actions)}
+                  onApprove={(data, actions) => onApprove(data, actions)}
+                />
+              </PayPalScriptProvider>
             </div>
             : <button
               className="btn text-light my-3 h-50 w-100"
@@ -176,6 +272,5 @@ const inputText5 = {
 }
 
 /*
-
 {<CartItem key={cart._id} product_id={cart.product_id} />}
 */
