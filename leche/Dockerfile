@@ -1,6 +1,6 @@
 FROM node:14.19.3
 
-WORKDIR /React_front_leche
+WORKDIR /React_leche
 
 COPY package.json .
 

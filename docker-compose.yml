@@ -24,9 +24,9 @@ services:
     build:
       context: ./leche
       dockerfile: Dockerfile
-    container_name: React_front_leche_container
+    container_name: React_leche_container
     volumes:
-      - ./leche/src:/React_front_leche/src:ro
+      - ./src:/React_leche/src:ro
     ports:
       - "3060:3060"
     environment:
