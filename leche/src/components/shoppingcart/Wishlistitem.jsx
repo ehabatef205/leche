@@ -42,6 +42,9 @@ export const Wishlistitem = (props) => {
           position: toast.POSITION.TOP_RIGHT
         })
       } else {
+        toast.success("Done added to cart", {
+          position: toast.POSITION.TOP_RIGHT
+        })
         console.log(res.data)
       }
     })

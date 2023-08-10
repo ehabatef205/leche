@@ -6,12 +6,17 @@ const jwt = require('jsonwebtoken')
 require("dotenv").config();
 
 module.exports.Create_order_item = async (req, res) => {
-    const usertoken = req.headers.authorization;
-    const token = usertoken.split(' ');
-    const decoded = jwt.verify(token[1], process.env.JWT_KEY);
-    const id = decoded.id;
-
     const body = req.body
+    let id = "";
+
+    if (!req.headers.authorization) {
+        id = body.user_id
+    } else {
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
+        id = decoded.id;
+    }
 
     let list = [];
 
@@ -55,7 +60,8 @@ const add_order_item = async (body, id) => {
         city: body.city,
         zipCode: body.zipCode,
         payment: body.payment,
-        totalPrice: body.totalPrice
+        totalPrice: body.totalPrice,
+        status: "Processing",
     })
     await newOrder_item.save()
     return newOrder_item
@@ -75,8 +81,6 @@ module.exports.Read_order_item = async (req, res) => {
 }
 
 module.exports.Read_order_items = async (req, res) => {
-
-
     await Order_items.find().then(e => {
         return res.status(200).json(e)
     }).catch(err => {

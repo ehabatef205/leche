@@ -9,6 +9,7 @@ import * as Cart from "../../api/basis/cart"
 import * as Wish from "../../api/basis/wish"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 
 export function CardsSlider() {
   const { id } = useParams();
@@ -58,39 +59,33 @@ export function CardsSlider() {
       })
     }
     */
-    if (localStorage.getItem("AuthBrook") === null) {
-      toast.warn("Please login first", {
-        position: toast.POSITION.TOP_RIGHT
-      })
-    } else {
-      Cart.addCart(product_id).then(res => {
-        if (res.data.message === "This product is already in cart") {
-          toast.error(res.data.message, {
-            position: toast.POSITION.TOP_RIGHT
-          })
-        } else {
-          console.log(res)
-        }
-      })
-    }
+    Cart.addCart(product_id).then(res => {
+      if (res.data.message === "This product is already in cart") {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT
+        })
+      } else {
+        toast.success("Done added to cart", {
+          position: toast.POSITION.TOP_RIGHT
+        })
+        console.log(res)
+      }
+    })
   }
 
   const addW = (product_id) => {
-    if (localStorage.getItem("AuthBrook") === null) {
-      toast.warn("Please login first", {
-        position: toast.POSITION.TOP_RIGHT
-      })
-    } else {
-      Wish.addWish(product_id).then(res => {
-        if (res.data.message === "This product is already in wish") {
-          toast.error(res.data.message, {
-            position: toast.POSITION.TOP_RIGHT
-          })
-        } else {
-          console.log(res.data)
-        }
-      })
-    }
+    Wish.addWish(product_id).then(res => {
+      if (res.data.message === "This product is already in wish") {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT
+        })
+      } else {
+        toast.success("Done added to wishlist", {
+          position: toast.POSITION.TOP_RIGHT
+        })
+        console.log(res.data)
+      }
+    })
   }
 
   return (

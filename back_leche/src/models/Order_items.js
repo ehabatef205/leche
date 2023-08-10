@@ -50,7 +50,10 @@ const order_items_Schema = new Schema({
     },
     totalPrice: {
         type: String
-    }
+    },
+    status: {
+        type: String
+    },
 }, { timestamps: true })
 
 module.exports = model.Cart_items || model("Order_items", order_items_Schema);

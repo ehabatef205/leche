@@ -4,21 +4,26 @@ const jwt = require('jsonwebtoken')
 require("dotenv").config();
 
 module.exports.Create_wish_item = async (req, res) => {
-    const usertoken = req.headers.authorization;
-    const token = usertoken.split(' ');
-    const decoded = jwt.verify(token[1], process.env.JWT_KEY);
-    const id = decoded.id;
+    const body = req.body
+    let id = "";
 
-    const wish_item = req.body
+    if (!req.headers.authorization) {
+        id = body.user_id
+    } else {
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
+        id = decoded.id;
+    }
 
-    const isNewWish = await Wish_items.isThisWish(wish_item.product_id, id)
+    const isNewWish = await Wish_items.isThisWish(body.product_id, id)
     if (!isNewWish) {
         return res.json({
             message: 'This product is already in wish'
         })
     }
 
-    await add_wish_item(wish_item, id).then(e => {
+    await add_wish_item(body, id).then(e => {
         return res.status(200).json(e)
     }).catch(err => {
         console.log('err', err)
@@ -50,11 +55,17 @@ module.exports.Read_wish_item = async (req, res) => {
 }
 
 module.exports.Read_wish_items = async (req, res) => {
-    const usertoken = req.headers.authorization;
-    const token = usertoken.split(' ');
-    const decoded = jwt.verify(token[1], process.env.JWT_KEY);
-    const id = decoded.id;
-    console.log(id)
+    const body = req.body
+    let id = "";
+
+    if (!req.headers.authorization) {
+        id = body.user_id
+    } else {
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
+        id = decoded.id;
+    }
 
     await Wish_items.find({ user_id: id }).then(e => {
         return res.status(200).json(e)

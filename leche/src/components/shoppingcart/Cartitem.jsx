@@ -73,9 +73,9 @@ export const CartItem = (props) => {
             <div className="my-2"><s className="mx-2 " style={{ color: "red" }}> ${product.price_before}</s> ${product.price_after}</div>
             <div className="d-flex w-100 my-1">
               <div className="countHandler d-flex">
-                <button className='btn  w-25 ' style={{ border: "0.5px solid gray" }} onClick={() => { minus() }}> - </button>
+                <button disabled={props.open} className='btn  w-25 ' style={{ border: "0.5px solid gray" }} onClick={() => { minus() }}> - </button>
                 <input className='btn  w-50' style={{ border: "0.5px solid gray" }} value={props.cart.quantity} onChange={(e) => { }} />
-                <button className='btn  w-25' style={{ border: "0.5px solid gray" }} onClick={() => { plus(product.quantity) }}> + </button>
+                <button disabled={props.open} className='btn  w-25' style={{ border: "0.5px solid gray" }} onClick={() => { plus(product.quantity) }}> + </button>
               </div>
             </div>
             {/*<div className="my-2">
@@ -85,7 +85,7 @@ export const CartItem = (props) => {
               }
             </div>*/}
             <div>
-              <button className="my-2 btn btn-outline-secondary" onClick={() => { remove() }}>remove</button>
+              <button disabled={props.open} className="my-2 btn btn-outline-secondary" onClick={() => { remove() }}>remove</button>
             </div>
             <div><p style={{ color: "red" }}>Final Sale - No Exchanges or Returns</p>
               <p> price {product.price_after * props.cart.quantity}</p> </div>

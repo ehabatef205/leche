@@ -20,13 +20,11 @@ const Cart = (props) => {
   const address = useRef(null);
   const city = useRef(null);
   const zipCode = useRef(null);
+  let userId;
 
   useEffect(() => {
-    if (localStorage.getItem("AuthBrook") !== null) {
-      getCart()
-      setIsOpen(false)
-    }
-
+    getCart()
+    setIsOpen(false)
   }
     , [props.data])
 
@@ -184,7 +182,7 @@ const Cart = (props) => {
         ) : (
           <div className="cart">
             {carts1.map((cart) => (
-              <CartItem key={cart._id} cart={cart} product_id={cart.product_id} quantity={cart.quantity} getCart={getCart} />
+              <CartItem key={cart._id} cart={cart} product_id={cart.product_id} quantity={cart.quantity} getCart={getCart} open={isOpen} />
             ))}
           </div>
         )}

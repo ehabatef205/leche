@@ -5,21 +5,26 @@ const jwt = require('jsonwebtoken')
 require("dotenv").config();
 
 module.exports.Create_cart_item = async (req, res) => {
-    const usertoken = req.headers.authorization;
-    const token = usertoken.split(' ');
-    const decoded = jwt.verify(token[1], process.env.JWT_KEY);
-    const id = decoded.id;
+    const body = req.body
+    let id = "";
 
-    const cart_item = req.body
+    if (!req.headers.authorization) {
+        id = body.user_id
+    } else {
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
+        id = decoded.id;
+    }
 
-    const isNewCart = await Cart_items.isThisCart(cart_item.product_id, id)
+    const isNewCart = await Cart_items.isThisCart(body.product_id, id)
     if (!isNewCart) {
         return res.json({
             message: 'This product is already in cart'
         })
     }
 
-    await add_cart_item(cart_item, id).then(e => {
+    await add_cart_item(body, id).then(e => {
         return res.status(200).json(e)
     }).catch(err => {
         console.log('err', err)
@@ -51,11 +56,17 @@ module.exports.Read_cart_item = async (req, res) => {
 }
 
 module.exports.Read_cart_items = async (req, res) => {
-    const usertoken = req.headers.authorization;
-    const token = usertoken.split(' ');
-    const decoded = jwt.verify(token[1], process.env.JWT_KEY);
-    const id = decoded.id;
-    console.log(id)
+    const body = req.body
+    let id = "";
+
+    if (!req.headers.authorization) {
+        id = body.user_id
+    } else {
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        const decoded = jwt.verify(token[1], process.env.JWT_KEY);
+        id = decoded.id;
+    }
 
     await Cart_items.find({ user_id: id }).then(e => {
         return res.status(200).json(e)

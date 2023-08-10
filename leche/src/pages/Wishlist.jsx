@@ -7,14 +7,12 @@ const Wishlist = () => {
   const [wishlist, setWWishlist] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem("AuthBrook") !== null) {
-      Wish.getWish(localStorage.getItem("AuthBrook")).then(res => {
-        setWWishlist(res.data)
-        if (res.data.length !== 0) {
-          setIsEmpty(false)
-        }
-      })
-    }
+    Wish.getWish(localStorage.getItem("AuthBrook")).then(res => {
+      setWWishlist(res.data)
+      if (res.data.length !== 0) {
+        setIsEmpty(false)
+      }
+    })
   }
     , [])
 

@@ -31,39 +31,33 @@ function Viewproduct({ products, handleClick }) {
     , [id])
 
   const addC = (product_id) => {
-    if (localStorage.getItem("AuthBrook") === null) {
-      toast.warn("Please login first", {
-        position: toast.POSITION.TOP_RIGHT
-      })
-    } else {
-      Cart.addCart(product_id).then(res => {
-        if (res.data.message === "This product is already in cart") {
-          toast.error(res.data.message, {
-            position: toast.POSITION.TOP_RIGHT
-          })
-        } else {
-          console.log(res.data)
-        }
-      })
-    }
+    Cart.addCart(product_id).then(res => {
+      if (res.data.message === "This product is already in cart") {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT
+        })
+      } else {
+        toast.success("Done added to cart", {
+          position: toast.POSITION.TOP_RIGHT
+        })
+        console.log(res.data)
+      }
+    })
   }
 
   const addW = (product_id) => {
-    if (localStorage.getItem("AuthBrook") === null) {
-      toast.warn("Please login first", {
-        position: toast.POSITION.TOP_RIGHT
-      })
-    } else {
-      Wish.addWish(product_id).then(res => {
-        if (res.data.message === "This product is already in wish") {
-          toast.error(res.data.message, {
-            position: toast.POSITION.TOP_RIGHT
-          })
-        } else {
-          console.log(res.data)
-        }
-      })
-    }
+    Wish.addWish(product_id).then(res => {
+      if (res.data.message === "This product is already in wish") {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT
+        })
+      } else {
+        toast.success("Done added to wishlist", {
+          position: toast.POSITION.TOP_RIGHT
+        })
+        console.log(res.data)
+      }
+    })
   }
 
   return (
@@ -117,7 +111,7 @@ function Viewproduct({ products, handleClick }) {
               </div>
 
               <div>
-                <p style={{ color: "blue" }}>Eligible for Free Shipping! (Regular shipping rates still apply to non-eligible items in cart)</p>
+                <pre style={{ fontSize: "18px" }}>{product.desc}</pre>
               </div>
               <div
                 className=" w-100 my-1 d-flex "

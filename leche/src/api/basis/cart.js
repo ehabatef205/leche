@@ -1,8 +1,10 @@
 import axios from '../axios'
+import Cookies from 'js-cookie';
 const proxy = `/cart_items`
 
 export const addCart = async (product_id) => {
     return await axios.post(`${proxy}/create`, {
+        user_id: Cookies.get('user_id'),
         product_id: product_id,
         quantity: 1
     }
@@ -15,7 +17,7 @@ export const removeCart = async (cart_id) => {
 }
 
 export const getCarts = async (token) => {
-    return await axios.get(`${proxy}/`
+    return await axios.post(`${proxy}/`, { user_id: Cookies.get('user_id') }
         , { headers: { authorization: token } }
     )
 }
