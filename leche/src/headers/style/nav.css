@@ -1,0 +1,23 @@
+.subnav-container{
+    margin-left:10% ;
+    margin-right:10% ;
+}
+.subnav{
+    font-size:1.3rem;
+}
+.subnav:hover{
+    text-decoration: underline;
+}
+.logo{
+    
+    width:13vw; 
+height: 6vh;
+    /* background-color: black; */
+}
+@media (max-width: 768px) {
+    .small-screen-only {
+      padding-top: 9.4vh;
+      padding-left: 8vh;
+      background-color: rgb(247, 249, 250);
+    }
+  }

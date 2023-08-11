@@ -1,0 +1,34 @@
+
+  .sider1 {
+    width: 260px;
+    position: relative;
+  }
+
+  .change1:hover i,
+  .change1:hover a {
+    color: rgb(154, 142, 142) !important;
+  }
+  .change2:hover input,
+  .change2:hover span {
+    text-decoration: underline;
+  }
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
