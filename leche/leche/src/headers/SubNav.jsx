@@ -20,7 +20,7 @@ function SubNav() {
       <nav className="navbar navbar-expand-lg w-100 ">
         <div className="d-flex  w-100">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"
-            style={{ position: "absolute", bottom: "125px" }}
+            style={{ position: "absolute", bottom: "117px",left:"200px" }}
             >
             <span className="navbar-toggler-icon"></span>
           </button>

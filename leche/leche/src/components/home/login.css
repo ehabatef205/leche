@@ -16,8 +16,12 @@ min-width:150px;
 }
 .brandcenter{
     max-width:1300px;
-    min-width:100px;
- 
-   
+min-width: 100px;
 
     }
+    /* @media (max-width: 500px) {
+        .brandcenter {
+          max-width:300px;
+         
+        }
+      } */

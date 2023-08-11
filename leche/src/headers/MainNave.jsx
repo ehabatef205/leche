@@ -26,7 +26,7 @@ function MainNave() {
 
   return (
     <div className='d-flex flex-wrap '>
-      <nav className=" navbar navbar-expand-lg bg-body-tertiary mainnave col-6 col-lg-12 ">
+      <nav className=" navbar navbar-expand-lg bg-body-tertiary mainnave col-12 ">
         <div className="container-fluid  ">
           <div className=' col-12 col-lg-4 d-flex justify-content-center'>
             <a className="navbar-brand  col-12 d-flex justify-content-center " style={{ display: "flex", objectFit: "contain" }} href="/">
@@ -57,7 +57,7 @@ function MainNave() {
 
 
             </div></div>
-          <div className="col-12 col-lg-3">
+          <div className="col-12 col-lg-3" >
 
             {/* <i className=" mx-2 bi bi-person"role="button"   href="/Login" style={{fontSize:"2rem"}}></i> */}
             {localStorage.getItem("AuthBrook") === null ? <i onClick={() => {
@@ -66,7 +66,8 @@ function MainNave() {
             </i> : <i onClick={() => {
               localStorage.removeItem("AuthBrook")
               navigate("/", { replace: true })
-            }} href=""> <i className={"mx-2 bi bi-box-arrow-right text-black"} role="button" style={{ fontSize: "2rem" }}></i>
+            }} href=""> 
+            <i className={"mx-2 bi bi-box-arrow-right text-black"} role="button" style={{ fontSize: "2rem" }}></i>
             </i>}
             <a href="/Wishlist"><i className=" mx-2 bi bi-heart text-black" role="button" style={{ fontSize: "2rem" }}></i></a>
             <i className=" mx-2 bi bi-cart " onClick={() => setData(!data)} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" style={{ fontSize: "2rem" }}></i>

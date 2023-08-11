@@ -57,7 +57,7 @@ function MainNave() {
 
 
             </div></div>
-          <div className="col-6 iconscontaner col-lg-3 ">
+          <div className="col-8 iconscontaner col-lg-3 ">
 
             {/* <i className=" mx-2 bi bi-person"role="button"   href="/Login" style={{fontSize:"2rem"}}></i> */}
             {localStorage.getItem("AuthBrook") === null ? <i onClick={() => {

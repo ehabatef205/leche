@@ -22,7 +22,7 @@ height: 6vh;
   }
   @media (max-width: 768px) {
     .iconscontaner{
-        left:300px;
+        
        position: relative;
     
       }
