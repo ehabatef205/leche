@@ -1,0 +1,114 @@
+.carousel-indicators {
+    margin: 0% !important;
+      width: 100%;
+      justify-content: center;
+      position: absolute;
+      top:-9px;
+     height: 265px;
+     /* background-color:black; */
+      display: flex;
+    }
+    
+    .homee{
+     background-color: rgba(178, 182, 186, 0.219);
+    
+    }
+    .contain{
+      top: 0;
+      width: 1300px;
+     
+      position: relative;
+      padding: 0px !important;
+      display: flex;
+      flex-wrap: wrap;
+    justify-content:space-around;
+    /*  */
+    
+    }
+    .containe{
+      top: 0;
+      max-width: 900px;
+      /* top: 100px; */
+      position: relative;
+      padding: 0px !important;
+      display: flex;
+      flex-wrap: wrap;
+    justify-content: space-between;
+    /*  */
+    
+    }
+    .card{
+      width: 322px;
+    }
+    .carousel-wrapper {
+      position: relative;
+      
+        width:265px;
+        height: 265px;
+    }
+    
+    .carousel-wrapper .carousel-indicators  [data-bs-target] {
+      width: 100%;
+      margin: 0%;
+      display: none;
+    }
+    .carousel-wrapper-view {
+      position: relative;
+      
+        width:700px;
+        height:700px;
+    }
+    
+    .carousel-wrapper-view .carousel-indicators  [data-bs-target] {
+      width: 100%;
+      margin: 0%;
+      display: none;
+    }
+ 
+    
+    .carousel-wrapper-view:hover [data-bs-target] {
+      width: 100%;
+      margin: 0%;
+        display: inline-flex;
+    }
+    .carousel-wrapper:hover [data-bs-target] {
+      width: 100%;
+      margin: 0%;
+        display: inline-flex;
+    }
+    .carousel-indicators [data-bs-target] {
+      background-color: #71b990 !important;} 
+    .carousel-wrapper .caption {
+      display: none;
+    }
+    .card-body1{
+      box-sizing: border-box  !important;
+      padding:0px !important;
+    }
+    .carousel-wrapper:hover .caption{
+    background-color: black;
+      display:block;
+      height: 15%;
+    }
+  
+  
+  /* event pupling */
+  /* pipes */
+  
+  .swiper-slide {
+    text-align: center;
+    /* font-size: 18px; */
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+   
+    align-items: center;
+  }
+  
+ 
+
+  
+    .btnfilter:hover {
+      background-color: #72be93 !important;
+    }
