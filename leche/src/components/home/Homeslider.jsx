@@ -61,16 +61,16 @@ function Homeslider() {
               className="carousel-inner w-100  d-flex justify-content-center h-100"
             >
               <Carousel style={{
-                height: '700px', width: "97%"
-              }} interval={3000} onSelect={handleSelect}>
+                height: '700px', width: "97%"}} interval={3000} onSelect={handleSelect}>
                 {slider.map((image, index) => (
                   <Carousel.Item key={index}>
                     <img style={{
                       height: '700px',
                       cursor: "pointer",
                       borderRadius: "10px",
+                      width:"727px"
                     }}
-                      className='w-100 '
+                      className='home-slider-img '
                       src={image.image}
                       alt={""}
                       onClick={() => handleSlideClick(ind)}

@@ -18,6 +18,12 @@ height: 6vh;
     .small-screen-only {
       padding-top: 9.4vh;
       padding-left: 8vh;
-      background-color: rgb(247, 249, 250);
     }
   }
+  @media (max-width: 768px) {
+    .iconscontaner{
+        
+       position: relative;
+    
+      }
+    }

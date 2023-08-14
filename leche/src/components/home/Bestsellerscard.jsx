@@ -12,13 +12,14 @@ function Bestsellerscard(props) {
   return (
 
     <div
-      className="bg-light  "
-      style={{ width: "20rem", textAlign: "center", borderRadius: "10px", }}
+      className="bg-light"
+      style={{ width: "13rem", textAlign: "center", borderRadius: "10px" }}
       onClick={handleClick}
     >
-      <img style={{ borderRadius: "10px", }} className="product--image" src={props.product.images[0]} alt="product image" />
+      <img style={{ borderRadius: "10px", width:"13rem",
+    height:" 16em"}} className="bg-info" src={props.product.images[0]} alt="product image" />
       <p className='my-2'>{props.product.name}</p>
-      <p className="">{props.product.price_after}$</p>
+      <p>{props.product.price_after}$</p>
     </div>
   )
 }
