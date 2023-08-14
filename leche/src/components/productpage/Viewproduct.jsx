@@ -80,7 +80,11 @@ function Viewproduct({ products, handleClick }) {
                   <Carousel.Item key={index}    >
                     <img
                       className="d-block w-100 "
-                      style={{ height: "700px", objectFit: "contained" }}
+                      style={{ 
+                        height: "600px",
+                      width :"400px"
+                      // , objectFit: "contained"
+                     }}
                       src={image}
                     />
 

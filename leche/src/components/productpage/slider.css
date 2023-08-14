@@ -55,8 +55,8 @@
     .carousel-wrapper-view {
       position: relative;
       
-        width:700px;
-        height:700px;
+        width:400px;
+        height:600px;
     }
     
     .carousel-wrapper-view .carousel-indicators  [data-bs-target] {

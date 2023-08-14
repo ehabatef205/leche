@@ -15,9 +15,44 @@ max-width:1200px;
 min-width:150px;
 }
 .brandcenter{
-    max-width:1300px;
-    min-width:100px;
- 
+    width:1200px;
    
 
     }
+    
+    @media (max-width:500px) {
+        .Carousel-div {
+            max-width :400px!important;
+         margin-left: 0px;         
+         margin-right: 0px;         
+        }}
+        /* style={{ height: "350px", textAlign: 'center', marginLeft: '16vw', marginRight: '16vw' }} */
+        @media (min-width:501px) {
+            .Carousel-div {
+             max-width :1400px!important;
+             margin-left: 16vw;         
+             margin-right: 16vw;
+             text-align:center;
+             height:350px;    
+            }}
+    @media (max-width: 500px) {
+        .brandcenter {
+          max-width:400px;
+         
+        }
+        } @media (max-width: 500px) {
+            .img-div {
+              max-width:400px;
+              /* margin-left: 0px;
+              margin-right:0px;  */
+             
+            }
+      } 
+      @media (max-width: 500px) {
+        .FB-img {
+          max-width:400px;
+          /* margin-left: 3%;
+          margin-right:3%; */
+         
+        }
+      }

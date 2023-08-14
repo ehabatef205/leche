@@ -54,3 +54,27 @@
 
     }
   }
+.carousel-control-prev {
+  background-color: black!important;
+  height: fit-content!important;
+  width: fit-content!important;
+  position: relative;
+  left: 8% !important;
+  top: 50% !important;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75)!important;
+}
+.carousel-control-next {
+  background-color: black!important;
+  height: fit-content!important;
+  width: fit-content!important;
+  position: relative;
+  right: 8% !important;
+  top: 50% !important;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75)!important;
+}
+@media (max-width :500px) {
+  .home-slider-img{
+max-width: 400px;
+max-height: 100%;
+  }
+ }

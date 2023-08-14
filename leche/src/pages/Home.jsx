@@ -28,6 +28,9 @@ function Home() {
       <FEATUREDBRANDS></FEATUREDBRANDS>
       <BESTSELLERS />
       <FEATUREDCATEGORIES></FEATUREDCATEGORIES>
+
+
+      
     </div >
 
   )

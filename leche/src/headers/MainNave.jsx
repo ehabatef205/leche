@@ -26,14 +26,14 @@ function MainNave() {
 
   return (
     <div className='d-flex flex-wrap '>
-      <nav className=" navbar navbar-expand-lg bg-body-tertiary mainnave col-6 col-lg-12 ">
-        <div className="container-fluid  ">
-          <div className=' col-12 col-lg-4 d-flex justify-content-center'>
+      <nav className=" navbar navbar-expand-lg bg-body-tertiary mainnave col-12 ">
+        <div className="container-fluid   ">
+          <div className=' col-4 col-lg-3 d-flex justify-content-center '>
             <a className="navbar-brand  col-12 d-flex justify-content-center " style={{ display: "flex", objectFit: "contain" }} href="/">
-              <img className='logo w-25' style={{ height: "110px", imageRendering: " pixelated" }} src={Logo}></img>
+              <img className='logo' style={{width:"130px", height: "100px", imageRendering: " pixelated" }} src={Logo}></img>
             </a>
           </div>
-          <div className="col-12  col-lg-5 my-2" style={{ height: "6vh" }}>
+          <div className="col-8  col-lg-6   my-2" style={{ height: "6vh" }}>
             <div style={container}>
               <div className=" mx-3  my-2 ">
                 <i className=" mx-2 bi bi-search-heart" style={{ fontSize: "1.5rem" }}></i>
@@ -57,7 +57,7 @@ function MainNave() {
 
 
             </div></div>
-          <div className="col-12 col-lg-3">
+          <div className="col-8 iconscontaner col-lg-3 ">
 
             {/* <i className=" mx-2 bi bi-person"role="button"   href="/Login" style={{fontSize:"2rem"}}></i> */}
             {localStorage.getItem("AuthBrook") === null ? <i onClick={() => {
