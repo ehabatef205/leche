@@ -26,7 +26,7 @@ export default function FEATUREDBRANDS() {
     <div>
       <hr></hr>
       <div className='my-4 aligncenter ' >
-        <h2>FEATURED BRANDS</h2>
+        <h2>ماركات مميزة </h2>
       </div>
       {loading ? <div></div> : <div className=' d-flex justify-content-center Carousel-div ' >
         <Carousel

@@ -22,7 +22,7 @@ function Home() {
   }, []);
 
   return (
-    <div >
+    <div  >
 
       <Homeslider></Homeslider>
       <FEATUREDBRANDS></FEATUREDBRANDS>

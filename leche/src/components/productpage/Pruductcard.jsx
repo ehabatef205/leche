@@ -89,38 +89,41 @@ export function CardsSlider() {
   }
 
   return (
-    <div className="containe d-flex  flex-wrap mx-1 ">
+    <div className="containe d-flex  flex-wrap mx-1  ">
       {prod_by_cat.map((product) => (
         <div
           className=" my-1"
           key={product._id}
         >
           <div className="carousel-wrapper">
-            <Carousel controls={false}>
+            <Carousel controls={false} onClick={() => handleImageClick(product)} style={{cursor: "pointer"}}>
               {product.images.map((image, index) => (
-                <Carousel.Item key={index}>
+                <Carousel.Item key={index} >
+                  
                   <img
-                    className="d-block w-100 "
-                    style={{ height: "265px", objectFit: "contained" }}
+                  
+                    className="d-block  "
+                    style={{ height: "265px",width:"265px", objectFit: "contained"}}
                     src={image}
+                    alt="view product"
                   />
 
                 </Carousel.Item>
               ))}
             </Carousel>
           </div >
-          <div className="caption bottom-0 w-100" style={{ backgroundColor: "#000" }} >
+          <div className="caption bottom-0 " style={{ backgroundColor: "#000" ,width:"265px"}} >
             <i className="bi bi-cart text-light mx-5" onClick={() => addC(product._id)} role="button " style={{ fontSize: "1.8rem", fontWeight: "bold", cursor: "pointer" }}></i>
             <i onClick={() => addW(product._id)} role="button " className="bi bi-heart mx-5  text-light" style={{ fontSize: "1.8rem", fontWeight: "bold", cursor: "pointer" }}></i>
           </div>
           <div
-            className="card-body my-2 d-flex"
-            style={{ fontSize: "0.8rem", padding: "0px", cursor: "pointer" }}
-            onClick={() => handleImageClick(product)}
+            className="card-body my-2 d-flex "
+            style={{ fontSize: "0.8rem", padding: "0px", cursor: "pointer" ,width:"265px"}}
+            // onClick={() => handleImageClick(product)}
           >
-            <div className=" mx-2  d-flex flex-column align-items-start">
-              <Card.Text className="mb-0 text-secondary">{product.name}</Card.Text>
-              <Card.Text className="mb-0"><s className="mx-2 " style={{ color: "red" }}> ${product.price_before}</s> ${product.price_after}</Card.Text>
+            <div className=" mx-2  w-100 d-flex flex-column align-items-start">
+              <Card.Text className="mb-0  w-100 text-secondary "><b>{product.name}</b></Card.Text>
+              <Card.Text className="mb-0 w-100 " ><s className="mx-2 " style={{ color: "red" }}> ${product.price_before}</s> ${product.price_after}</Card.Text>
 
               {/*<Card.Text className="mb-0">
                 {Array.isArray(product.color) ?

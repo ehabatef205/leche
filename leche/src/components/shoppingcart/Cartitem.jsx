@@ -88,7 +88,7 @@ export const CartItem = (props) => {
               <button disabled={props.open} className="my-2 btn btn-outline-secondary" onClick={() => { remove() }}>remove</button>
             </div>
             <div><p style={{ color: "red" }}>Final Sale - No Exchanges or Returns</p>
-              <p> price {product.price_after * props.cart.quantity}</p> </div>
+              <p> سعر المنتج : {product.price_after * props.cart.quantity}</p> </div>
           </div>
         </div>
       </div>}
