@@ -87,7 +87,7 @@ import React from 'react'
 
 function Featuerd() {
   return (
-    <div className="d-flex" style={{ width: "150px", height: "40px" }}>
+    <div className="d-flex " style={{ width: "150px", height: "40px" }}>
       <select className="form-select" aria-label="Dropdown">
         <option  >Suggested</option>
         <option value="option1">Option 1</option>
@@ -138,12 +138,13 @@ function ProductHeaders() {
   return (
     <div>
       <header
-        className=" second "
-        style={{ display: "flex", justifyContent: "space-between" }}
+        className="d-flex justify-content-start"
+        style={{  }}
       >
-        <Navpage></Navpage>
-
+        {/* <Navpage></Navpage> */}
+        <div className='w-100  d-flex justify-content-end '>
         <Featuerd></Featuerd>
+        </div> 
       </header>
     </div>
   )

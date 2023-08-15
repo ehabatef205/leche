@@ -62,8 +62,8 @@ function Viewproduct({ products, handleClick }) {
 
   return (
     <div
-      className="viewcontainer justify-content-center my-3   "
-      style={{ position: "relative", top: "70px" }}
+      className="viewcontainer justify-content-center my-5  "
+      style={{ position: "relative" }}
     >
 
       {loading ? <FaSpinner icon="spinner" className="icon_pulse" style={{ fontSize: "50px" }} /> : <Container id="parent" className=" justify-content-center ">
@@ -104,18 +104,22 @@ function Viewproduct({ products, handleClick }) {
           >
             <div className="w-100">
               <div>
-                <p className="" style={{ textAlign: "left", fontSize: "1.5rem" }}>
+                <p className="" style={{ textAlign: "right", fontSize: "1.5rem" }}>
                   {product.name}
                 </p>
               </div>
 
-              <div>
-                <p> ${product.price_after}</p>
-                <p style={{ color: "red" }}> ${product.price_before}</p>
+              <div style={{fontSize:"1.2rem"}} className="d-flex flex-wrap justify-content-between">
+                <b className="col-6 ">
+                <p style={{margin:"0px" }}> ${product.price_after}</p>
+                <s className="text-dark" style={{ fontSize:"2rem"}}><p className="text-danger" style={{ fontSize:"1.2rem",margin:"0px" }} > ${product.price_before}</p></s> </b>
+                <div  style={{borderRadius:"50px", width:"fit-content"}}className=" bg-danger-subtle   d-flex justify-content-center">
+                  <b className="my-3 mx-4" >2%</b></div>
+
               </div>
 
               <div>
-                <pre style={{ fontSize: "18px" }}>{product.desc}</pre>
+                <pre style={{ fontSize: "18px" ,height:"250px",overflowY:"auto"}}>{product.desc}</pre>
               </div>
               <div
                 className=" w-100 my-1 d-flex "
@@ -131,8 +135,8 @@ function Viewproduct({ products, handleClick }) {
               </div>
               <hr></hr>
               <div className=" w-100">
-                <button className="btn" style={{ backgroundColor: "#72be93", color: "#fff", marginRight: "5px" }} onClick={() => { addC(product._id) }}>add to cart</button>
-                <button className="btn" style={{ backgroundColor: "#fff", marginLeft: "5px", border: "1px solid #72be93", color: "#72be93" }} onClick={() => { addW(product._id) }}>add to wish</button>
+                <button className="btn" style={{ backgroundColor: "#72be93", color: "#fff", marginLeft: "5px" }} onClick={() => { addC(product._id) }}>اضف الي العربه </button>
+                <button className="btn" style={{ backgroundColor: "#fff", marginRight: "5px", border: "1px solid #72be93", color: "#72be93" }} onClick={() => { addW(product._id) }}>اضف الي قائمه الرغبات</button>
               </div>
 
             </div>

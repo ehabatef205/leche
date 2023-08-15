@@ -5,7 +5,7 @@ import Regester from "../components/home/Regester";
 
 function login() {
   return (
-    <div className="d-flex  flex-wrap  my-3 " style={{ textAlign: "center", marginLeft: "10%", marginRight: "10%" }}>
+    <div className="d-flex  flex-wrap my-3 " style={{ textAlign: "center", marginLeft: "10%", marginRight: "10%" }}>
       <div className="col-12 ">
         <h2>Sign in to your account</h2>
         <p>

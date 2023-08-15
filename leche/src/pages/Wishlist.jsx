@@ -33,7 +33,7 @@ const Wishlist = () => {
     }}>
 
       <div>
-        <h1>Wishlist</h1>
+        <h1>قائمة الامنيات</h1>
       </div>
 
       {isEmpty ? (

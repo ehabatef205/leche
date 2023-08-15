@@ -24,7 +24,7 @@ function BESTSELLERS() {
   return (
     <div className='my-4'>
       <div className='my-4  aligncenter'>
-        <h1>Best Sellers</h1>
+        <h1>الافضل مبيعا </h1>
       </div>
       <div className="d-flex justify-content-center" style={{ height: "350px", textAlign: "center" }}>
         {loading ? <div></div> : <Carousel

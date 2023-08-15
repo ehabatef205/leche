@@ -7,8 +7,8 @@ import ProductHeaders from '../components/productpage/ProductHeaders'
 function Productpage() {
   return (
     <div
-      className=" d-flex  flex-wrap justify-content-center align-content-center"
-      style={{ position: "relative", top: "70px" }}
+      className=" d-flex  flex-wrap justify-content-center align-content-center  "
+      style={{ position: "relative",height:"fit-content" }}
     >
 
       <section className="sectionone d-flex  flex-wrap">

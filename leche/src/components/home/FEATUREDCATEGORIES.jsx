@@ -15,9 +15,9 @@ function FEATUREDCATEGORIES() {
   }
     , [])
 
-  return (<div>
+  return (<div className='my-5'>
     <div className='my-4  aligncenter'>
-      <h1>FEATURED CATEGORIES</h1>
+      <h1>الاقسام المميزة</h1>
     </div>
     <div className=' d-flex justify-content-center'>
       <div className='d-flex flex-wrap justify-content-between ' style={{ maxWidth: "1700px", minWidth: "200px", height: "fit-content" }}>

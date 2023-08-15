@@ -169,16 +169,16 @@ const Cart = (props) => {
   return (
     <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
       <div className="offcanvas-header">
-        <h5 className="offcanvas-title" id="offcanvasExampleLabel">My Cart</h5>
+        <h5 className="offcanvas-title" id="offcanvasExampleLabel">السلة</h5>
         <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
 
       <div className='offcanvas-body'>
         <div className='col-12'>
-          <h1>Your Cart Items</h1>
+          <h1>المنتجات اللتي تم اضافتها</h1>
         </div>
         {isEmpty ? (
-          <div className="empty-message">Your cart is empty.</div>
+          <div className="empty-message">اضف منتج</div>
         ) : (
           <div className="cart">
             {carts1.map((cart) => (
@@ -187,7 +187,7 @@ const Cart = (props) => {
           </div>
         )}
         <div className='col-12'>
-          <div>Total price: {totalPrice}$</div>
+          <div>السعر الكلي : {totalPrice}$</div>
           {isOpen ?
             <div>
               <input
@@ -248,7 +248,7 @@ const Cart = (props) => {
               }}
               style={{ backgroundColor: "#72be93" }}
             >
-              Checkout
+              انهاء التسوق
             </button>}
         </div>
       </div>

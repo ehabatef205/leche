@@ -15,11 +15,12 @@ import Login from "./pages/login";
 import Wishlist from "./pages/Wishlist";
 import { ShoppinghcartProvider } from "./components/shoppingcart/shppingcartcontext";
 import './footer.css'
+import Footer from "./headers/Footer";
 
 function App() {
 
   return (
-    <ShoppinghcartProvider className="App">
+    <ShoppinghcartProvider dir="rtl" className="App">
       <Router>
         <MainNave></MainNave>
         <Routes>
@@ -32,38 +33,8 @@ function App() {
           <Route path="/Wishlist" element={<Wishlist />} />
         </Routes>
       </Router>
-      <footer style={{ height: "", position: "relative", top: "70px" }}>
-        <div className="Footer">
-          <div>
-            <div className="Footer__content">
-              <p>LECHE © 2023 | جميع الحقوق محفوظة</p>
-            </div>
-            <div>
-              <div className="site-footer__social-icons">
-                <div className="site-footer__social-icons-member">
-                  <a style={{ color: "#fff" }} href="" target="_blank">
-                    <InstagramIcon />
-                  </a>
-                </div>
-                <div className="site-footer__social-icons-member">
-                  <FacebookIcon />
-                </div>
-                <div className="site-footer__social-icons-member">
-                  <TwitterIcon />
-                </div>
-                {/* <div
-              
-              className="site-footer__social-icon-member"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <YouTubeIcon />
-            </div>*/}
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+     
+      <Footer></Footer> 
 
     </ShoppinghcartProvider>
   );
